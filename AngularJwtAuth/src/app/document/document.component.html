@@ -1,0 +1,33 @@
+<div class="col-md-6">
+  <div class="panel-heading">
+    <h2> Document List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>RegNumber</th>
+        <th>Signer</th>
+        <th>Status</th>
+        <th>creationDate</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let document of documents | async">
+        <td class="hidden">{{document.id}}</td>
+        <td>{{document.author}}</td>
+        <td>{{document.description}}</td>
+        <td>{{document.regnumber}}</td>
+        <td>{{document.signer}}</td>
+        <td>{{document.status}}</td>
+        <td>{{document.creationdate}}</td>
+        <td><button class="btn btn-danger" (click)="deleteDocument(document.id)">Remove</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

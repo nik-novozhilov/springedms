@@ -1,0 +1,38 @@
+<div *ngIf="success; else addDocumentForm">
+  {{response}}
+  <form>
+    <div>
+      <button class="btn btn-success" (click)="return()">Ok</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #addDocumentForm>
+  <div class="col-md-6">
+    <h2 class="text-center">Add Document</h2>
+    <form>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="email" [(ngModel)]="document.description" placeholder="Description" name="description" class="form-control" id="description">
+      </div>
+
+      <div class="form-group">
+        <label for="signer">Signer:</label>
+        <!--<input [(ngModel)]="document.signer" placeholder="Signer" name="signer" class="form-control" id="signer">-->
+
+        <select class="form-control" id="signer" name="signer"
+                [(ngModel)]="document.signer"
+                #signer="ngModel">
+                <!--required [(ngModel)]="company.name" name="name"-->
+          <option value="0">Select Signer</option>
+          <option *ngFor="let company of companies | async" [value]="company.name">{{company.name}}</option>
+        </select>
+      <!--  <div [hidden]="company. || power.pristine" class="alert alert-danger">
+          Power is required
+        </div>-->
+      </div>
+
+      <button class="btn btn-success" (click)="createDocument()">Create Document</button>
+    </form>
+  </div>
+</ng-template>
